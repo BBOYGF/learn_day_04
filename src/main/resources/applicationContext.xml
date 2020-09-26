@@ -10,12 +10,28 @@
     <bean id="Log"  class="com.learn.log.Log"/>
     <bean id="afterLog" class="com.learn.log.AfterLog"/>
     <!--配置AOP 需要导入AOP的约束-->
-    <!--使用原生springApi的接口-->
-    <aop:config>
-        <!--切入点  也就是在哪个地方执行  一个表达式 execution(要执行的位置) -->
-        <aop:pointcut id="pointcut" expression="execution(* com.learn.server.service.*(..))"/>
-        <!--执行环绕增强-->
-        <aop:advisor advice-ref="Log" pointcut-ref="pointcut"></aop:advisor>
-        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"></aop:advisor>
-    </aop:config>
+    <!--方式一：使用原生springApi的接口-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;切入点  也就是在哪个地方执行  一个表达式 execution(要执行的位置) &ndash;&gt;-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* com.learn.server.service.*(..))"/>-->
+<!--        &lt;!&ndash;执行环绕增强&ndash;&gt;-->
+<!--        <aop:advisor advice-ref="Log" pointcut-ref="pointcut"></aop:advisor>-->
+<!--        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"></aop:advisor>-->
+<!--    </aop:config>-->
+    <!--方式二-->
+<!--    <bean id="diy" class="com.learn.diy.DiyPintCup"/>-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;切面&ndash;&gt;-->
+<!--        <aop:aspect ref="diy">-->
+<!--            &lt;!&ndash;切入点&ndash;&gt;-->
+<!--            <aop:pointcut id="point" expression="execution(* com.learn.server.ServiceImpl.*(..))"/>-->
+<!--            &lt;!&ndash;通知&ndash;&gt;-->
+<!--            <aop:before method="before" pointcut-ref="point"/>-->
+<!--            <aop:after method="after" pointcut-ref="point"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+        <bean id="annotationPoitCut" class="com.learn.diy.AnnotationPointCut"/>
+        <!--开启注解支持-->
+        <aop:aspectj-autoproxy/>
+
 </beans>

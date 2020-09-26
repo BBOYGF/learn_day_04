@@ -6,6 +6,6 @@ public class MyTest {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         service service = (com.learn.server.service) context.getBean("service");
-        service.add();
+        service.select();
     }
 }
